@@ -29,14 +29,6 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 const productsController = require('./controller/storeSeeds');
 app.use('/products', productsController)
 
-//index
-app.get('/', (req, res) => {
-	Store.find({}, (error, allProducts) => {
-		res.render('index.ejs', {
-			products: allProducts,
-		});
-	});
-});
 
 
 // LISTENER
