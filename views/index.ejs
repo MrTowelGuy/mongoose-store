@@ -12,10 +12,10 @@
         <% products.forEach(product=> { %>
             <div class="ind_prod">
                 <h2 class="product_name"><%= product.name %> </h2>
-                <a href="/products/<%= product._id %>"><img src="<%= product.img%>"></a>
+                <a href="/<%= product._id %>"><img src="<%= product.img%>"></a>
                 <p>Price: $<%= product.price%></p>
                 <p>Quantity: <%= product.qty%></p>
-                <form action="/products/<%=product._id%>?_method=DELETE" method="POST">
+                <form action="/<%=product._id%>?_method=DELETE" method="POST">
                     <input class= "delete" type="submit" value="Delete">
                 </form>
             </div>

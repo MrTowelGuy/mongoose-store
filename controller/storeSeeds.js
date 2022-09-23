@@ -58,7 +58,7 @@ productsRouter.get("/new", (req, res) => {
 productsRouter.delete('/:id', (req,res)=>{
   Store.findByIdAndDelete(req.params.id, (error, foundItem) =>{
     productId = req.params.id;
-    res.redirect('/products')
+    res.redirect('/')
   })
 })
 
@@ -73,7 +73,7 @@ productsRouter.put('/:id', (req, res) => {
   }
   products.findByIdAndUpdate(req.params.id, newItem, (error, foundItem) => {
       foundItem[req.params.id] = newItem;
-      res.redirect(`/products/${req.params.id}`)
+      res.redirect(`/${req.params.id}`)
   })
 });
 
@@ -87,7 +87,7 @@ productsRouter.post("/", (req, res) => {
     qty: req.body.qty
   }
     Store.create(newProduct, (error, foundItem) => {
-        res.redirect('/products');
+        res.redirect('/');
     });
 })
 
