@@ -4,12 +4,11 @@ const app = express();
 require("dotenv").config();
 const mongoose = require("mongoose");
 const methodOverride = require("method-override")
-const Store = require ('./models/products')// connects to my products in the models folder
 
 //Middleware
 app.use(express.urlencoded({extended:false}));
 app.use(methodOverride("_method"));
-app.use(express.static("public"));
+app.use(express.static("public"))
 
 // DATABASE CONFIGURATION
 mongoose.connect(process.env.DATABASE_URL, {
