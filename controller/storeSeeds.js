@@ -34,16 +34,20 @@ productsRouter.get('/seed', (req,res) => {
       }
   );
 });
-//CODE BELOW I TOOK FROM MY SERVER.JS
+//CODE BELOW I TOOK FROM MY SERVER.JS TO DECLUTTER
 
-// Index
-productsRouter.get('/', (req, res) => {
-	Store.find({}, (error, allProducts) => {
-		res.render('index.ejs', {
-			products: allProducts,
-		});
-	});
-});
+
+//Buy
+productsRouter.put('/:id/buy', (req, res) => {
+  products.findById(req.params.id, (error, foundItem) =>{
+    console.log(foundItem)
+    foundItem.qty -=1;
+    foundItem.save();
+    res.redirect(`/produts/${req.params.id}`)
+  })
+})
+
+// Index (in server js)
 
 // NEW
 productsRouter.get("/new", (req, res) => {
@@ -54,7 +58,7 @@ productsRouter.get("/new", (req, res) => {
 productsRouter.delete('/:id', (req,res)=>{
   Store.findByIdAndDelete(req.params.id, (error, foundItem) =>{
     productId = req.params.id;
-    res.redirect('./products')
+    res.redirect('/products')
   })
 })
 

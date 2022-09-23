@@ -4,6 +4,7 @@ const app = express();
 require("dotenv").config();
 const mongoose = require("mongoose");
 const methodOverride = require("method-override")
+const Store = require ('./models/products')// connects to my products in the models folder
 
 //Middleware
 app.use(express.urlencoded({extended:false}));
@@ -28,9 +29,18 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 const productsController = require('./controller/storeSeeds');
 app.use('/products', productsController)
 
+//index
+app.get('/', (req, res) => {
+	Store.find({}, (error, allProducts) => {
+		res.render('index.ejs', {
+			products: allProducts,
+		});
+	});
+});
+
 
 // LISTENER
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
-    console.log(`The serer is listening on port: ${PORT}`)
+    console.log(`It's me, ya boy, on port: ${PORT}`)
 })
