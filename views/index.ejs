@@ -11,9 +11,9 @@
         </nav>
         <% products.forEach(product=> { %>
             <div class="ind_prod">
-                <h2 class="product_name"><%= product.name %> </h2>
-                <a href="/products/<%= product._id %>"><img src="<%= product.img%>"></a>
+                <a href="/products/<%= product._id %>"><h2><%= product.name%></h2></a>
                 <p>Price: $<%= product.price%></p>
+                <img src="<%= product.img %> " alt="">
                 <p>Quantity: <%= product.qty%></p>
                 <form action="/products/<%=product._id%>?_method=DELETE" method="POST">
                     <input class= "delete" type="submit" value="Delete">
