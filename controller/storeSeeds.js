@@ -39,15 +39,15 @@ productsRouter.get('/seed', (req,res) => {
 
 //Buy
 productsRouter.put('/:id/buy', (req, res) => {
-  products.findById(req.params.id, (error, foundItem) =>{
+  Store.findById(req.params.id, (error, foundItem) =>{
     console.log(foundItem)
     foundItem.qty -=1;
     foundItem.save();
-    res.redirect(`/produts/${req.params.id}`)
+    res.redirect(`/products/${req.params.id}`)
   })
 })
 
-// Index (in server js)
+// Index
 productsRouter.get('/', (req, res) => {
 	Store.find({}, (error, allProducts) => {
 		res.render('index.ejs', {
@@ -78,9 +78,9 @@ productsRouter.put('/:id', (req, res) => {
       price: req.body.price,
       qty: req.body.qty,
   }
-  products.findByIdAndUpdate(req.params.id, newItem, (error, foundItem) => {
+  Store.findByIdAndUpdate(req.params.id, newItem, (error, foundItem) => {
       foundItem[req.params.id] = newItem;
-      res.redirect(`/${req.params.id}`)
+      res.redirect(`/products/${req.params.id}`)
   })
 });
 
